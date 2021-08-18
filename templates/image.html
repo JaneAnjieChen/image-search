@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <div id="main">
+
+        {% for i in range(result_num) %}
+		<article class="thumb">
+            <script type="text/javascript" src="static/jquery-3.6.0.min.js"></script>
+			<a><img id={{i}} src="" alt="" /></a>
+            <script type="text/javascript">
+
+                //创建XMLHttpRequest对象
+                var xhr = new XMLHttpRequest();
+
+                var image_name = "{{image_names[i]}}";
+
+                 xhr.open('POST', '/image/'.concat(image_name), true);}
+
+                xhr.responseType = 'blob';
+                //请求成功回调函数
+                xhr.onload = function(e) {
+                    if (this.status == 200) {
+
+                        $("#{{i}}").attr("src", URL.createObjectURL(this.response));
+
+                    }
+                };
+                xhr.send();
+
+            </script>
+
+            <p>{{image_names[i]}}</p>
+        </article>
+        {% endfor %}
+
+    </div>
+</body>
+</html>
+
+<!-- theShowImg.htm -->
+
+<!--<html>-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=gb2312">-->
+<!--<title>�ޱ����ĵ�</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<table width="100%" border="0" cellspacing="0" cellpadding="0">-->
+<!--  <script language="javascript" src="showImgsJs.js?image_paths={{ image_paths }}&image_names={{image_names}}" >-->
+<!--  </script>-->
+<!--</table>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
